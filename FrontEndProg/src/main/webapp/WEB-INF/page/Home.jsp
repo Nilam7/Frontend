@@ -12,7 +12,13 @@
 <hr/>
 <br/>
 <br/>
-<h1><a href="viewCategories">view all category</a></h1>
+<h1><a href="viewCategories">View all category</a></h1>
+<hr/>
+<br/>
+<h1><a href="getproductform">Add product</a></h1>
+<hr/>
+<br/>
+<h1><a href="viewProduct">View all product</a></h1>
 </div>
 </body>
 </html>
