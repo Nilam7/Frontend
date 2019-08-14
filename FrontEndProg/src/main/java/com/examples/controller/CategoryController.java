@@ -28,23 +28,44 @@ import com.vinayak.model.Category;
 		@RequestMapping(value="/addcategory",method=RequestMethod.POST)
 		public String addCategory(@ModelAttribute Category categoryobj,ModelMap map) {
 			
-			boolean res=categoryDao.addCategory(categoryobj);
-			System.out.println(res);
+			if(categoryobj.getCategoryId()==0) {
+				categoryDao.addCategory(categoryobj);
+				map.addAttribute("msg","Category Added Sucesfully..");
+			}
+			else {
+				categoryDao.update(categoryobj);
+				map.addAttribute("msg","Category Updated Sucesfully..");
+			}
 			
-			if(res)
-			{
+			List<Category> categoryList=categoryDao.getAllCategories();
+			map.addAttribute("categories",categoryList);
+			
+			return "ViewCategory";
+			
+		}
+		
+		@RequestMapping(value="/viewCategories",method=RequestMethod.GET)
+		public String getAllCategories(ModelMap map) {
+			
 				List<Category> categoryList=categoryDao.getAllCategories();
 				map.addAttribute("categories",categoryList);
 				return "ViewCategory";
-			}
-			return "Error";
+			
 		}
+		
 		@RequestMapping(value="/deleteCategory/{Id}",method=RequestMethod.GET)
 		public String deleteCategory(@PathVariable int Id,ModelMap map){
 			categoryDao.deleteCategory(Id);
 			List<Category> categoryList=categoryDao.getAllCategories();
 			map.addAttribute("categories",categoryList);
-			return "ViewCategories";
+			map.addAttribute("msg","Category Deleted Sucesfully..");
+			return "ViewCategory";
 		
 		}
+		@RequestMapping(value="/updateCategory/{Id}",method=RequestMethod.GET)
+		public String updateCategoryForm(@PathVariable int Id,ModelMap map){
+			Category cObj=categoryDao.getCategoryById(Id);
+			map.addAttribute("categoryobj",cObj);
+			return "Category";
+	}
 	}

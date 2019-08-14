@@ -8,7 +8,11 @@
 </head>
 <body>
 <div align="center">
-<a href="getcategoryform">get category</a>
+<h1><a href="getcategoryform">Add category</a></h1>
+<hr/>
+<br/>
+<br/>
+<h1><a href="viewCategories">view all category</a></h1>
 </div>
 </body>
 </html>

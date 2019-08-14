@@ -9,6 +9,11 @@
 </head>
 <body>
 
+
+<c:if test="${msg ne null}">
+	<h3 style="color:green;font-style:italic;">${msg}</h3>
+</c:if>
+
 <h1 align="center">View Category</h1>
 <table>
 <tr>
@@ -20,7 +25,8 @@
 			<tr>
 				<td>${category.categoryName}</td>
 				<td>${category.description }</td>
-				<td><a href="deleteCategory/${category.categoryId}">Delete</a></td>
+				<td><a href="${pageContext.request.contextPath}/deleteCategory/${category.categoryId}">Delete</a></td>
+				<td><a href="${pageContext.request.contextPath}/updateCategory/${category.categoryId}">Update</a></td>
 				</tr>
 		</c:forEach>
 
